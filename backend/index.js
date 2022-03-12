@@ -40,7 +40,6 @@ app.post('/upload-video',upload.single('video'),async (req,res)=>{
     try {
         const { originalname, body } = req.file
         const fileExtention = '.'+originalname.split('.').pop()
-        console.log(originalname)
         res.status(200).send('http://localhost:5000/video/'+req.file.filename)
     } catch (error) {
         console.log(error)
@@ -50,7 +49,6 @@ app.post('/upload-video',upload.single('video'),async (req,res)=>{
 
 app.post('/upload-video-details',(req,res)=>{
     try {
-        console.log(req.body)
         const { name, description, date, url } = req.body
         db.get('videosData').push(req.body).write()
     } catch (error) {
